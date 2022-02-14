@@ -1,7 +1,11 @@
 const express = require('express')
 
+var cors = require('cors')
+
 const server = express()
+
 server.use(express.json())
+server.use(cors())
 
 const port = 3001
 
