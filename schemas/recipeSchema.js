@@ -13,7 +13,7 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     enum: [
       "Gosto Adquirido", "Café da Manhã", "Afetivo", "Sobremesa", "Exótico",
-      "Requintado", "Saúdavel", "Antiquado", "Simples", "De Bar", "Salada",
+      "Requintado", "Saudável", "Antiquado", "Simples", "De Bar", "Salada",
       "Sopa", "Estimulante", "Outro"
     ]
   },
