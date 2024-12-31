@@ -39,8 +39,7 @@ async function create(req, res) {
     }
 
   }
-  else 
-    return res.status(401).json({msg: "header 'apikey' invalid'"});
+  return res.status(401).json({msg: "header 'apikey' invalid'"});
 }
 
 module.exports = {
