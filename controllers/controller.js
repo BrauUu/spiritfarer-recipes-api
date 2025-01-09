@@ -2,7 +2,7 @@ const Recipe = require('../schemas/recipeSchema')
 
 async function getAll(req, res) {
   try {
-    const recipes = await Recipe.find()
+    const recipes = await Recipe.find().sort({'bookId': 1})
     return res.status(200).json(recipes);
   } catch (err) {
     return res.status(400).json({ error: "Bad Request" });
