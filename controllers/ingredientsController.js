@@ -1,9 +1,9 @@
-const Recipe = require('../schemas/recipeSchema')
+const Ingredient = require('../schemas/ingredientSchema')
 
 async function getAll(req, res) {
   try {
-    const recipes = await Recipe.find().sort({'bookId': 1})
-    return res.status(200).json(recipes);
+    const ingredients = await Ingredient.find().sort({'bookId': 1})
+    return res.status(200).json(ingredients);
   } catch (err) {
     return res.status(400).json({ error: "Bad Request" });
   }
@@ -14,8 +14,11 @@ async function getOne(req, res) {
   const id = req.params.id;
 
   try {
-    const recipe = await Recipe.findById(id)
-    return res.status(200).json(recipe);
+    const ingredient = await Ingredient.findById(id)
+    if(!ingredient){
+      throw Error()
+    }
+    return res.status(200).json(ingredient);
   } catch (err) {
     return res.status(400).json({ error: "Bad Request" });
   }
@@ -31,10 +34,10 @@ async function create(req, res) {
 
   if (apikey === process.env.API_KEY) {
     try {
-      await Recipe.create(body)
+      await Ingredient.create(body)
       return res.status(200).json({msg: 'sucess'});
     } catch (err) {
-      console.log(err)
+
       return res.status(400).json({ error: "Bad Request" });
     }
 

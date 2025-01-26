@@ -1,6 +1,8 @@
 const express = require('express')
-
 var cors = require('cors')
+
+const ingredients = require('./routes/ingredientsRoutes')
+const recipes = require('./routes/recipesRoutes')
 
 const server = express()
 
@@ -13,4 +15,5 @@ server.listen(port, () => {
   console.log(`running on port ${port}`)
 });
 
-require('./routes/route') (server)
+server.use('/ingredients', ingredients)
+server.use('/recipes', recipes)
