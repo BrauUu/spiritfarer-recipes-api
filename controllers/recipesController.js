@@ -11,10 +11,10 @@ async function getAll(req, res) {
 
 async function getOne(req, res) {
 
-  const id = req.params.id;
+  const bookId = req.params.id;
 
   try {
-    const recipe = await Recipe.findById(id)
+    const recipe = await Recipe.findById(bookId)
     if(!recipe){
       throw Error()
     }
@@ -22,6 +22,29 @@ async function getOne(req, res) {
   } catch (err) {
     return res.status(400).json({ error: "Bad Request" });
   }
+}
+
+async function update(req, res) {
+  const { apikey } = req.headers;
+  const bookId = req.params.bookId;
+  const { body } = req
+
+  if(!apikey)
+    return res.status(400).json({msg: "header 'apikey' required"});
+
+  if(bookId != body.bookId)
+    return res.status(400).json({msg: "property 'bookId' on 'body' should be the same as 'bookId' param"});
+
+  if (apikey === process.env.API_KEY) {
+    try {
+      const data = await Recipe.updateOne({'bookId' : bookId}, body)
+      return res.status(200).json({msg: 'sucess'});
+    } catch (err) {
+      return res.status(400).json({ error: "Bad Request"});
+    }
+
+  }
+  return res.status(401).json({msg: "header 'apikey' invalid'"});
 }
 
 async function create(req, res) {
@@ -47,5 +70,6 @@ async function create(req, res) {
 module.exports = {
   getAll,
   getOne,
+  update,
   create
 }

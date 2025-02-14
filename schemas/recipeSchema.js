@@ -18,8 +18,18 @@ const recipeSchema = new mongoose.Schema({
     ]
   },
   ingredients: [{
+    _id: false,
     name: String,
-    src: String
+    src: String,
+    type: {
+      type: String,
+      required: false
+    },
+    matchingIdentifiers: {
+      type: [Number],
+      required: false,
+      default: undefined
+    }
   }],
 },
   {
