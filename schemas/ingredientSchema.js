@@ -8,7 +8,7 @@ const ingredientSchema = new mongoose.Schema({
   type: {
     type: String,
     enum: [
-      "Grãos", "Ingredientes", "Pesca", "Frutas e Hortaliças"
+      "Grãos", "Ingredientes", "Pesca", "Frutas e Verduras"
     ]
   },
 },

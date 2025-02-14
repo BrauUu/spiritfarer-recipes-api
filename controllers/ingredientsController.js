@@ -2,7 +2,7 @@ const Ingredient = require('../schemas/ingredientSchema')
 
 async function getAll(req, res) {
   try {
-    const ingredients = await Ingredient.find().sort({'bookId': 1})
+    const ingredients = await Ingredient.find().sort({'id': 1})
     return res.status(200).json(ingredients);
   } catch (err) {
     return res.status(400).json({ error: "Bad Request" });
