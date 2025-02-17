@@ -21,15 +21,7 @@ const recipeSchema = new mongoose.Schema({
     _id: false,
     name: String,
     src: String,
-    type: {
-      type: String,
-      required: false
-    },
-    matchingIdentifiers: {
-      type: [Number],
-      required: false,
-      default: undefined
-    }
+    ids: [Number],
   }],
 },
   {

@@ -11,12 +11,12 @@ async function getAll(req, res) {
 
 async function getOne(req, res) {
 
-  const bookId = req.params.id;
+  const bookId = req.params.bookId;
 
   try {
-    const recipe = await Recipe.findById(bookId)
+    const recipe = await Recipe.findOne({'bookId': bookId})
     if(!recipe){
-      throw Error()
+      return res.status(404).json({ error: "recipe not found" });
     }
     return res.status(200).json(recipe);
   } catch (err) {
