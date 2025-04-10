@@ -14,7 +14,7 @@ async function getOne(req, res) {
   const id = req.params.id;
 
   try {
-    const ingredient = await Ingredient.findById(id)
+    const ingredient = await Ingredient.findOne({'id': id})
     if(!ingredient){
       throw Error()
     }
