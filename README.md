@@ -1,7 +1,7 @@
 
 # 📘 Spiritfarer Recipes API
 
-Esta API fornece informações sobre receitas e ingredientes do jogo *Spiritfarer*. Você pode utilizá-la para consultar dados de receitas e seus respectivos ingredientes.
+Esta API fornece informações sobre receitas e ingredientes do jogo **Spiritfarer**. Você pode utilizá-la para consultar dados de receitas e seus respectivos ingredientes.
 
 ---
 
@@ -15,6 +15,25 @@ https://spiritfarer-recipes-api.onrender.com/
 
 ## 📙 Modelo: `/recipes`
 
+### Modelo de Receita
+```json
+{
+  "bookId": Number,
+  "name": String,
+  "description": String,
+  "src": String (URL da imagem),
+  "size": "Lanchinho"|"Pequeno"|"Médio"|"Grande",
+  "type": "Gosto Adquirido"|"Café da Manhã"|"Cozinha Afetiva"|"Sobremesa"|"Exótico"|"Refinado"|"Saudável"|"Tradicional"|"Simples"|"De Bar"|"Salada"|"Sopa"|"Estimulante"|"Outro",
+  "ingredients": [
+    {
+      "name": String (ou múltiplas nomes separadas por `/`),
+      "src": String (ou múltiplas URLs separadas por `|`),
+      "ids": [Number]
+    }
+  ]
+}
+```
+
 ### 🔹 GET `/recipes/`
 
 Retorna uma lista com todas as receitas.
@@ -23,27 +42,7 @@ Retorna uma lista com todas as receitas.
 ```json
 [
     {
-        "bookId": 2,
-        "name": "Marisco Cozido",
-        "description": "Uma simples mas deliciosa refeição de marisco, para os mais requintados paladares.",
-        "src": "https://images2.imgbox.com/71/fd/U9sdQQj8_o.png",
-        "size": "Pequeno",
-        "type": "Gosto Adquirido",
-        "ingredients": [
-            {
-                "name": "Marisco",
-                "src": "https://images2.imgbox.com/e7/59/l1qFtgxd_o.png",
-                "ids": [
-                    30,
-                    33,
-                    38,
-                    41,
-                    48,
-                    49,
-                    54
-                ]
-            }
-        ]
+        ...
     },
     {
         "bookId": 3,
@@ -84,6 +83,9 @@ Retorna uma lista com todas as receitas.
                 ]
             }
         ]
+    },
+    {
+        ...
     }
 ]
 ```
@@ -120,8 +122,19 @@ Retorna os detalhes de uma receita específica com base no `bookId`.
 
 ---
 
-## 🧂 Modelo: `/ingredients`
+## 📙 Modelo: `/ingredients`
 
+### Modelo de Ingrediente
+```json
+{
+  "id": Number,
+  "name": String,
+  "description": String,
+  "src": String (URL da imagem),
+  "type": "Grãos"|"Ingredientes"|"Pesca"|"Frutas e Verduras"|"Madeira"
+}
+
+```
 ### 🔹 GET `/ingredients/`
 
 Retorna uma lista com todos os ingredientes.
@@ -130,11 +143,7 @@ Retorna uma lista com todos os ingredientes.
 ```json
 [
     {
-        "id": 1,
-        "name": "Milho",
-        "description": "Milho é um GRÃO dourado com diversas utilidades. Pode ser transformado em FARINHA DE MILHO em um MOINHO.",
-        "src": "https://images2.imgbox.com/10/30/dm4xHHMC_o.png",
-        "type": "Grãos"
+        ...
     },
     {
         "id": 2,
@@ -150,6 +159,9 @@ Retorna uma lista com todos os ingredientes.
         "src": "https://images2.imgbox.com/b4/11/GVmqQjFt_o.png",
         "type": "Grãos"
     },
+    {
+        ...
+    }
 ]
 ```
 
@@ -178,11 +190,4 @@ Retorna os detalhes de um ingrediente específico com base no `id`.
 ## 📌 Observações
 
 - Todos os dados são retornados em formato **JSON**.
-
----
-
-## 📬 Contribuições
-
-Sinta-se à vontade para abrir *issues* ou enviar *pull requests* com sugestões de melhorias ou correções.
-
----
+- Não é necessário nenhum tipo autenticação para buscar os dados.
