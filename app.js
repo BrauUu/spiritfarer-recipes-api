@@ -12,7 +12,7 @@ server.use(cors())
 const port = 4001
 
 server.listen(port, () => {
-  console.log(`running on port ${port}`)
+  console.log(`running on http://localhost:${port}`)
 });
 
 server.use('/ingredients', ingredients)
