@@ -21,12 +21,22 @@ https://spiritfarer-recipes-api.onrender.com/
   "bookId": Number,
   "name": String,
   "description": String,
-  "src": String (URL da imagem),
-  "size": "Lanchinho"|"Pequeno"|"Médio"|"Grande",
-  "type": "Gosto Adquirido"|"Café da Manhã"|"Cozinha Afetiva"|"Sobremesa"|"Exótico"|"Refinado"|"Saudável"|"Tradicional"|"Simples"|"De Bar"|"Salada"|"Sopa"|"Estimulante"|"Outro",
+  "src": String,
+  "size": {
+    type: String,
+    enum: ["Lanchinho", "Pequeno", "Médio", "Grande"]
+  },
+  "type": {
+    type: String,
+    enum: [
+      "Gosto Adquirido", "Café da Manhã", "Cozinha Afetiva", "Sobremesa", "Exótico",
+      "Refinado", "Saudável", "Tradicional", "Simples", "De Bar", "Salada",
+      "Sopa", "Estimulante", "Outro"
+    ]
+  },
   "ingredients": [
     {
-      "name": String (ou múltiplas nomes separadas por `/`),
+      "name": String,
       "src": String (ou múltiplas URLs separadas por `|`),
       "ids": [Number]
     }
@@ -89,7 +99,6 @@ Retorna uma lista com todas as receitas.
     }
 ]
 ```
----
 
 ### 🔹 GET `/recipes/:bookId`
 
@@ -120,6 +129,12 @@ Retorna os detalhes de uma receita específica com base no `bookId`.
 }
 ```
 
+## 📌 Observações
+
+- Quando uma receita aceitar diferentes ingredientes equivalentes, eles serão agrupados em uma mesma entrada. Nessa situação:
+  - Os nomes dos ingredientes serão separados por **"/"**.
+  - Os links das imagens correspondentes serão separados por **"|"**
+
 ---
 
 ## 📙 Modelo: `/ingredients`
@@ -130,8 +145,13 @@ Retorna os detalhes de uma receita específica com base no `bookId`.
   "id": Number,
   "name": String,
   "description": String,
-  "src": String (URL da imagem),
-  "type": "Grãos"|"Ingredientes"|"Pesca"|"Frutas e Verduras"|"Madeira"
+  "src": String,
+  "type": {
+    type: String,
+    enum: [
+      "Grãos", "Ingredientes", "Pesca", "Frutas e Verduras", "Madeira"
+    ]
+  },
 }
 
 ```
