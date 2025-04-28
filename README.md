@@ -16,7 +16,7 @@ https://spiritfarer-recipes-api.onrender.com/
 ## 📙 Modelo: `/recipes`
 
 ### Modelo de Receita
-```json
+```js
 {
   "bookId": Number,
   "name": String,
@@ -37,7 +37,7 @@ https://spiritfarer-recipes-api.onrender.com/
   "ingredients": [
     {
       "name": String,
-      "src": String (ou múltiplas URLs separadas por `|`),
+      "src": String,
       "ids": [Number]
     }
   ]
@@ -140,7 +140,7 @@ Retorna os detalhes de uma receita específica com base no `bookId`.
 ## 📙 Modelo: `/ingredients`
 
 ### Modelo de Ingrediente
-```json
+```js
 {
   "id": Number,
   "name": String,
