@@ -4,7 +4,7 @@
   "description": "spiritfarer recipes api",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon run app.js"
+    "start": "nodemon run app.js"
   },
   "repository": {
     "type": "git",
